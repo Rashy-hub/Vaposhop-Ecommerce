@@ -26,7 +26,7 @@ jobs:
               env:
                   RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
               run: |
-                  curl -X POST "https://api.render.com/v1/services/YOUR_BACKEND_SERVICE_ID/deploys" \
+                  curl -X POST "https://api.render.com/v1/services/srv-csdv3t68ii6s73codrd0/deploys" \
                   -H "Authorization: Bearer $RENDER_API_KEY" \
                   -H "Content-Type: application/json" \
                   -d '{"clearCache": false}'
