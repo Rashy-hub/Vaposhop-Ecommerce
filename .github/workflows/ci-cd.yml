@@ -9,17 +9,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
-        services:
-            mongo:
-                image: mongo
-                ports:
-                    - 27017:27017
-                options: >-
-                    --health-cmd "echo 'db.runCommand({ ping: 1 })' | mongo localhost:27017/test --quiet"
-                    --health-interval 10s
-                    --health-timeout 5s
-                    --health-retries 3
-
         steps:
             - name: Checkout code
               uses: actions/checkout@v2
@@ -49,7 +38,7 @@ jobs:
               env:
                   RENDER_API_KEY: ${{ secrets.VAPOSHOP_PROD }}
               run: |
-                  curl -X POST "https://api.render.com/v1/deploy/some-service-id" \
+                  curl -X POST "https://api.render.com/v1/deploy/srv-csdrgn5svqrc73943qag" \
                   -H "Content-Type: application/json" \
                   -H "Authorization: Bearer $RENDER_API_KEY" \
                   -d '{"branch": "main"}'
