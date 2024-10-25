@@ -1,0 +1,32 @@
+name: Backend CI/CD
+
+on:
+    push:
+        paths:
+            - 'server/**'
+
+jobs:
+    build-deploy-backend:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Log in to Docker Hub
+              run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+            - name: Build backend Docker image
+              run: docker build -t my-backend-image:latest -f server/Dockerfile .
+
+            - name: Push Docker image to Docker Hub
+              run: docker push my-backend-image:latest
+
+            - name: Deploy to Render
+              env:
+                  RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+              run: |
+                  curl -X POST "https://api.render.com/v1/services/YOUR_BACKEND_SERVICE_ID/deploys" \
+                  -H "Authorization: Bearer $RENDER_API_KEY" \
+                  -H "Content-Type: application/json" \
+                  -d '{"clearCache": false}'

@@ -1,0 +1,29 @@
+name: Frontend CI/CD
+
+on:
+    push:
+        paths:
+            - 'client/**'
+
+jobs:
+    build-deploy-frontend:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install dependencies and build frontend
+              run: |
+                  cd client
+                  npm install
+                  npm run build
+
+            - name: Deploy to Render
+              env:
+                  RENDER_API_KEY: ${{ secrets.VAPOSHOP_PROD }}
+              run: |
+                  curl -X POST "https://api.render.com/v1/services/srv-csdrgn5svqrc73943qag/deploys" \
+                  -H "Authorization: Bearer $RENDER_API_KEY" \
+                  -H "Content-Type: application/json" \
+                  -d '{"clearCache": false}'

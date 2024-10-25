@@ -1,17 +1,10 @@
 version: '3.8'
-
 services:
     server:
         build:
-            context: ./server
+            context: .
+            dockerfile: server/Dockerfile
         ports:
             - '5000:5000'
         environment:
-            - MONGODB_URI=${MONGODB_URI} # Assure-toi que cette variable d'environnement est bien définie
-        # Retire depends_on si tu n'as plus besoin de Mongo localement
-
-    client:
-        build:
-            context: ./client
-        ports:
-            - '3000:3000'
+            - MONGODB_URI=${{ secrets.MONGODB_URI }} # Variable d'environnement pour MongoDB Atlas
