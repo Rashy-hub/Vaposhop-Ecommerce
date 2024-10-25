@@ -78,10 +78,11 @@ app.use('*', extractRoutes, (req, res) => {
     res.status(404).json(responseBody)
 })
 // plan a cron task to sent a get request in order to prevent auto sleep
-cron.schedule('*/14 * * * *', () => {
-    console.log('Envoi de la requête pour éviter la mise en veille...')
-    wakeUpSelf()
-})
+
+//cron.schedule('*/14 * * * *', () => {
+//  console.log('Envoi de la requête pour éviter la mise en veille...')
+// wakeUpSelf()
+//})
 
 app.listen(port, () => {
     console.log(
