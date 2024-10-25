@@ -4,11 +4,11 @@ In this self-imposed challenge, I'll harness the power of AI to accelerate the d
 
 ## Deployment, Workflows and CI/CD
 
-This project is structured as a MERN stack application with a single GitHub repository containing both the backend and frontend. The backend is located in the `server` directory, while the frontend is housed in the `client` directory. Both services are fully dockerized to ensure consistency across different environments.
+This project is structured as a MERN stack application with a single GitHub repository containing both the backend and frontend. The backend is located in the `server` directory, while the frontend is housed in the `client` directory. Backend services is fully dockerized to ensure consistency across different environments.
 
 To automate the deployment process, we have set up a Continuous Integration and Continuous Deployment (CI/CD) pipeline using GitHub Actions. Upon every push to the `main` branch, the following steps are executed:
 
-1. **Docker Build**: Both the backend and frontend services are built using Docker, ensuring that all dependencies are managed and that the application runs smoothly in containerized environments.
+1. **Docker Build**: Only the backend web service as are built using Docker, ensuring that all dependencies are managed and that the application runs smoothly in containerized environments.
 
 2. **Backend Deployment**: The backend service is redeployed automatically to Render using the Render API. The deployment is triggered by a `curl` command that sends a POST request to the Render API with the service ID for the backend.
 
