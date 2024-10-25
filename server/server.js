@@ -6,7 +6,7 @@ const cors = require('cors')
 const cron = require('node-cron')
 const mongoose = require('mongoose')
 
-const logRequest = require('./middleware/request-logger')
+const logRequest = require('./middlewares/request-logger')
 const {
     registratedRoutes,
     extractRoutes,
