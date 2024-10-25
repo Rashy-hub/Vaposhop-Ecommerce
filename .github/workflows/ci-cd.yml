@@ -22,7 +22,6 @@ jobs:
               run: |
                   cd server
                   npm install
-                  npm run build
 
             - name: Build frontend
               run: |
