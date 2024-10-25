@@ -17,10 +17,10 @@ jobs:
               run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
             - name: Build backend Docker image
-              run: docker build -t my-backend-image:latest -f server/DockerFile .
+              run: docker build -t rashyhub/my-backend-image:latest -f server/DockerFile .
 
             - name: Push Docker image to Docker Hub
-              run: docker push my-backend-image:latest
+              run: docker push rashyhub/my-backend-image:latest
 
             - name: Deploy to Render
               env:

@@ -1,5 +1,5 @@
 require('dotenv-flow').config() // Load environment variables from .env file
-
+console.log('server.js starting ...')
 const express = require('express')
 const passport = require('passport')
 const cors = require('cors')
